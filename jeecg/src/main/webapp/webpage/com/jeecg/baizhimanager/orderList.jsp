@@ -2,7 +2,6 @@
 <%@include file="/context/mytags.jsp"%>
 <script type="text/javascript">
     function detail2(title,url, id,width,height) {
-	alert(url+"---"+id)
 	
 	var rowsData = $('#'+id).datagrid('getSelections');
 	
@@ -19,7 +18,7 @@
 		tip('请选择一条记录再查看');
 		return;
 	}
-	console.info(rowsData[0].userid);
+
     url += '&load=detail&username='+rowsData[0].userid;
 	createdetailwindow(title,url,width,height);
 }
@@ -46,3 +45,5 @@
   </t:datagrid>
   </div>
  </div>
+
+ 
