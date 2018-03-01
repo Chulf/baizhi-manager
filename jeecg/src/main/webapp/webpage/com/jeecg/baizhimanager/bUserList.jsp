@@ -5,7 +5,7 @@
   <div region="center" style="padding:0px;border:0px">
   <t:datagrid name="bUserList" title="用户" actionUrl="bUserController.do?datagrid" idField="id" fit="true">
    <t:dgCol title="编号" field="id" hidden="true"></t:dgCol>
-   <t:dgCol title="用户名" field="username"   width="120"></t:dgCol>
+   <t:dgCol title="用户名" field="username"   width="120" ></t:dgCol>
    <t:dgCol title="密码" field="password"   width="120"></t:dgCol>
    <t:dgCol title="邮箱" field="mail"   width="120"></t:dgCol>
    <t:dgCol title="手机号" field="phone"   width="120"></t:dgCol>

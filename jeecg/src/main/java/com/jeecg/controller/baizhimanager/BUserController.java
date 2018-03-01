@@ -157,6 +157,9 @@ public class BUserController extends BaseController {
 		if (StringUtil.isNotEmpty(bUser.getId())) {
 			bUser = bUserService.getEntity(BUserEntity.class, bUser.getId());
 			req.setAttribute("bUserPage", bUser);
+		}else{
+			bUser = bUserService.findUniqueByProperty(BUserEntity.class, "username", bUser.getUsername());
+			req.setAttribute("bUserPage", bUser);
 		}
 		return new ModelAndView("com/jeecg/baizhimanager/bUser");
 	}
