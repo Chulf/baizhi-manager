@@ -105,30 +105,17 @@ public class FileController extends BaseController {
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, file, request.getParameterMap());
 		this.fileService.getDataGridReturn(cq, true);
 		List results = dataGrid.getResults();
-		List<FileEntity> recopy = new ArrayList();
-		for (Object result : results) {
-			FileEntity fileEntity = (FileEntity)result;
-			FileEntity entity = new FileEntity();
-			entity.setId(fileEntity.getId());
-			entity.setFilename(fileEntity.getFilename());
-			entity.setFileurl(fileEntity.getFileurl());
-			entity.setText(fileEntity.getText());
-			entity.setUploadtime(fileEntity.getUploadtime());
-			entity.setUserid(fileEntity.getUserid());
-			recopy.add(entity);
-		}
-		//List re = new ArrayList();
+	
+		//防止jeecg查询过后在重新更改数据
+		systemService.getSession().clear();
+		
 		for (Object result : results) {
 			FileEntity fileEntity = (FileEntity)result;
 			BUserEntity entity = bUserService.getEntity(BUserEntity.class, fileEntity.getUserid());
 			fileEntity.setUserid(entity.getUsername());
 		}
 		TagUtil.datagrid(response, dataGrid);
-		for (FileEntity result : recopy) {
-			//orderService.updateEntitie(result);
-			fileService.updateBySqlString("update baizhi_file set userid = '"+result.getUserid()+"'where id = '"+result.getId()+"'");
-			//orderService.saveOrUpdate(result);
-		}
+	
 	}
 
 	/**
