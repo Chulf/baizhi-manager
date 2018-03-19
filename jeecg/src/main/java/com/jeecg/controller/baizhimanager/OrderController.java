@@ -107,7 +107,9 @@ public class OrderController extends BaseController {
 			OrderEntity oe = (OrderEntity)result;
 			if(oe.getType().equals("0")){oe.setType("WEB");}
 			if(oe.getType().equals("1")){oe.setType("APP");}
-			if(oe.getType().equals("2")){oe.setType("其他软件");}
+			if(oe.getType().equals("4")){oe.setType("其他软件");}
+			if(oe.getType().equals("2"))oe.setType("微信小程序");
+			if(oe.getType().equals("3"))oe.setType("展示性网站");
 			BUserEntity entity = bUserService.getEntity(BUserEntity.class, oe.getUserid());
 			oe.setUserid(entity.getUsername());
 		}
